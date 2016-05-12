@@ -47,9 +47,7 @@ class CalculatorBrain {
 
 	// Read-only Property
 	var result: Double {
-		get {
-			return accumulator
-		}
+		return accumulator
 	}
 
 	func setOperand(operand: Double) {

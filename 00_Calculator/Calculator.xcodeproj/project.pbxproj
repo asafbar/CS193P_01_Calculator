@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				17173DAA1CDE1D610040FE2A /* ViewController.swift */,
-				17173DAC1CDE1D610040FE2A /* Main.storyboard */,
 				17173DBB1CE1F8F10040FE2A /* CalculatorBrain.swift */,
+				17173DAC1CDE1D610040FE2A /* Main.storyboard */,
 				17173DBA1CDE1E540040FE2A /* Supporting Files */,
 			);
 			path = Calculator;
@@ -301,6 +301,7 @@
 				17173DB91CDE1D610040FE2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
