@@ -11,7 +11,26 @@ import Foundation
 
 class CalculatorBrain {
 
+	// Private (Internal)
+	// ------------------
+	
+	// struct very much like Class with NO inheritance
+	// It pass by value
+	private struct PendingBinaryOperationInfo {
+		var binaryFunction: (Double, Double) -> Double
+		var firstOperand: Double
+	}
+
+	private var pending: PendingBinaryOperationInfo?
 	private var accumulator = 0.0
+
+	// enum pass by value (Like struct)
+	private enum Operation {
+		case Constant(Double)
+		case UnaryOperation((Double) -> Double)
+		case BinaryOperation((Double, Double) -> Double)
+		case Equals
+	}
 
 	private var operations: Dictionary<String, Operation> = [
 		"π": Operation.Constant(M_PI),
@@ -26,24 +45,8 @@ class CalculatorBrain {
 		"=": Operation.Equals
 	]
 
-	// enum pass by value (Like struct)
-	private enum Operation {
-		case Constant(Double)
-		case UnaryOperation((Double) -> Double)
-		case BinaryOperation((Double, Double) -> Double)
-		case Equals
-	}
-
-	// struct very much like Class with NO inheritance
-	// It pass by value
-	private struct PendingBinaryOperationInfo {
-		var binaryFunction: (Double, Double) -> Double
-		var firstOperand: Double
-	}
-
-	private var pending: PendingBinaryOperationInfo?
-
 	// Public (External)
+	// -----------------
 
 	// Read-only Property
 	var result: Double {
