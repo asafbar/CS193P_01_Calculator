@@ -13,7 +13,7 @@ class CalculatorBrain {
 
 	// Private (Internal)
 	// ------------------
-	
+
 	// struct very much like Class with NO inheritance
 	// It pass by value
 	private struct PendingBinaryOperationInfo {
@@ -23,6 +23,8 @@ class CalculatorBrain {
 
 	private var pending: PendingBinaryOperationInfo?
 	private var accumulator = 0.0
+  private var description = " "
+  private var isPartialResult = false
 
 	// enum pass by value (Like struct)
 	private enum Operation {
@@ -30,6 +32,7 @@ class CalculatorBrain {
 		case UnaryOperation((Double) -> Double)
 		case BinaryOperation((Double, Double) -> Double)
 		case Equals
+    case Random(() -> Double)
 	}
 
 	private var operations: Dictionary<String, Operation> = [
@@ -42,7 +45,8 @@ class CalculatorBrain {
 		"÷": Operation.BinaryOperation({ $0 / $1 }),
 		"+": Operation.BinaryOperation({ $0 + $1 }),
 		"−": Operation.BinaryOperation({ $0 - $1 }),
-		"=": Operation.Equals
+		"=": Operation.Equals,
+    "RAN": Operation.Random({ Double(arc4random())/Double(UInt32.max) })
 	]
 
 	// Public (External)
@@ -71,6 +75,8 @@ class CalculatorBrain {
 					accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
 					pending = nil
 				}
+      case .Random(let function):
+        accumulator = function()
 			}
 		}
 	}
