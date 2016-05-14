@@ -8,11 +8,11 @@
 
 import Foundation
 
-extension String
-{
-	func replace(target: String, withString: String) -> String
-	{
-		return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
+extension String {
+	func replace(target: String, withString: String) -> String {
+		return self.stringByReplacingOccurrencesOfString(target, withString: withString,
+			options: NSStringCompareOptions.LiteralSearch,
+			range: nil)
 	}
 }
 
@@ -82,7 +82,8 @@ class CalculatorBrain {
 					description = symbole + description
 				}
 			case .BinaryOperation(let function):
-				pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+				pending = PendingBinaryOperationInfo(binaryFunction: function,
+					firstOperand: accumulator)
 
 				if symbole == "÷" || symbole == "×" {
 					description = "(\(description))"
@@ -94,14 +95,15 @@ class CalculatorBrain {
 
 					description = description.replace("...", withString: "")
 
-					accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+					accumulator = pending!.binaryFunction(pending!.firstOperand,
+						accumulator)
 
 					pending = nil
 				}
 			case .Random(let function):
 				accumulator = function()
 				description += symbole
-            case.Constant(let value):
+				case.Constant(let value):
 				accumulator = value
 			}
 		}
