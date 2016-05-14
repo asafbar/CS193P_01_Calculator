@@ -13,12 +13,13 @@ class ViewController: UIViewController {
 	private let DECIMAL_POINT = "."
 	private var calculatorBrain = CalculatorBrain()
 	private var isInMiddleOfTyping = false
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
+	override func prefersStatusBarHidden() -> Bool {
+		return true
+	}
 
 	@IBOutlet private weak var display: UILabel!
+	@IBOutlet private weak var descriptionLabel: UILabel!
 
 	@IBAction private func touchedDigit(sender: UIButton) {
 
@@ -41,6 +42,7 @@ class ViewController: UIViewController {
 			}
 			display.text! += incomingDigit
 		}
+		descriptionLabel.text = calculatorBrain.operationDescription
 	}
 
 	@IBAction private func touchedOperation(sender: UIButton) {
@@ -56,8 +58,10 @@ class ViewController: UIViewController {
 		if Double(Int(result)) == result {
 			display.text = String(Int(result))
 		} else {
-			display.text = String(calculatorBrain.result)
+			display.text = String(result)
 		}
+
+		descriptionLabel.text = calculatorBrain.operationDescription
 	}
 }
 

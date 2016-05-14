@@ -304,7 +304,7 @@
                                         <rect key="frame" x="150" y="0.0" width="150" height="48"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="N/A">
+                                        <state key="normal" title="π">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -390,12 +390,23 @@
                                     <constraint firstAttribute="height" constant="60" id="9cf-F7-6b1"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="IAw-vO-wwR">
+                                <rect key="frame" x="0.0" y="502" width="600" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="GZe-yt-QCY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aaG-25-0wE" secondAttribute="trailing" id="25E-MO-OqC"/>
+                            <constraint firstItem="IAw-vO-wwR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Eb9-YD-o0p"/>
                             <constraint firstItem="pOh-UF-4ZP" firstAttribute="top" secondItem="frI-Fu-fSv" secondAttribute="bottom" id="Edv-sS-ImB"/>
                             <constraint firstItem="KJ4-Mf-XT4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="F7b-0a-nQT"/>
+                            <constraint firstAttribute="trailing" secondItem="IAw-vO-wwR" secondAttribute="trailing" id="FaE-hv-XFa"/>
                             <constraint firstItem="KJ4-Mf-XT4" firstAttribute="top" secondItem="6ce-7g-Omv" secondAttribute="bottom" constant="-2" id="Fxd-bg-dbk"/>
                             <constraint firstItem="6ce-7g-Omv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ghy-FS-t0L"/>
                             <constraint firstAttribute="trailing" secondItem="pRW-gl-kIE" secondAttribute="trailing" id="HcL-C4-cql"/>
@@ -407,6 +418,7 @@
                             <constraint firstItem="aaG-25-0wE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Sa9-Fv-V8O"/>
                             <constraint firstItem="pRW-gl-kIE" firstAttribute="top" secondItem="aaG-25-0wE" secondAttribute="bottom" id="UzU-y0-yhA"/>
                             <constraint firstItem="SIh-ug-icE" firstAttribute="top" secondItem="pOh-UF-4ZP" secondAttribute="bottom" constant="-1" id="VH5-hr-5mM"/>
+                            <constraint firstItem="IAw-vO-wwR" firstAttribute="top" secondItem="pOh-UF-4ZP" secondAttribute="bottom" constant="58" id="W8j-5n-Dij"/>
                             <constraint firstAttribute="trailing" secondItem="KJ4-Mf-XT4" secondAttribute="trailing" id="Wyg-pX-R93"/>
                             <constraint firstItem="pOh-UF-4ZP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="X4S-iD-VBY"/>
                             <constraint firstAttribute="trailing" secondItem="frI-Fu-fSv" secondAttribute="trailing" id="YNz-uV-meB"/>
@@ -426,6 +438,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="IAw-vO-wwR" id="NDb-ig-8Ka"/>
                         <outlet property="display" destination="6ce-7g-Omv" id="Otd-ZZ-NoE"/>
                     </connections>
                 </viewController>
