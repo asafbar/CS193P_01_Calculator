@@ -8,3 +8,6 @@
 
 ** 2. Applying MVC
 
+[[./01_CalculatorDuplicate/00-Calculator-V1.1.png]]
+
+[[./01_CalculatorDuplicate/CalculatorDuplication/][Project Source Code]]

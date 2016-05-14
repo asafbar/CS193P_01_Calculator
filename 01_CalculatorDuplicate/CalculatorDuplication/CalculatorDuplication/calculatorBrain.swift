@@ -1,55 +1,46 @@
 //
-//  CalculatorBrain.swift
-//  Calculator
+//  calculatorBrain.swift
+//  CalculatorDuplication
 //
-//  Created by Xinyang Li on 5/10/16.
+//  Created by Xinyang Li on 5/13/16.
 //  Copyright © 2016 Xinyang Li. All rights reserved.
 //
 
-// Foundation is the core service layer
 import Foundation
 
 class CalculatorBrain {
+	// MARK: - Private
+	private var accumulator = 0.0
+	private var pending: PendingBinaryOperationInfo?
+	private var isPartialResult = false
+	private var description = " "
 
-	// Private (Internal)
-	// ------------------
-	// struct very much like Class with NO inheritance
-	// It pass by value
+	private enum Operation {
+		case Equals
+		case Random(() -> Double)
+		case Constant(Double)
+		case UnaryOperation((Double) -> Double)
+		case BinaryOperation((Double, Double) -> Double)
+	}
+
 	private struct PendingBinaryOperationInfo {
 		var binaryFunction: (Double, Double) -> Double
 		var firstOperand: Double
 	}
 
-	private var pending: PendingBinaryOperationInfo?
-	private var accumulator = 0.0
-	private var description = " "
-	private var isPartialResult = false
-
-	// enum pass by value (Like struct)
-	private enum Operation {
-		case Constant(Double)
-		case UnaryOperation((Double) -> Double)
-		case BinaryOperation((Double, Double) -> Double)
-		case Equals
-		case Random(() -> Double)
-	}
-
 	private var operations: Dictionary<String, Operation> = [
-		"π": Operation.Constant(M_PI),
-		"e": Operation.Constant(M_E),
-		"√": Operation.UnaryOperation(sqrt),
-		"COS": Operation.UnaryOperation(cos),
-		"±": Operation.UnaryOperation({ -$0 }),
+		"%": Operation.UnaryOperation({ $0 / 100.0 }),
+		"±": Operation.UnaryOperation({ $0 * -1.0 }),
+		"AC": Operation.Constant(0),
+		"+": Operation.BinaryOperation({ $0 + $1 }),
+		"-": Operation.BinaryOperation({ $0 - $1 }),
 		"×": Operation.BinaryOperation({ $0 * $1 }),
 		"÷": Operation.BinaryOperation({ $0 / $1 }),
-		"+": Operation.BinaryOperation({ $0 + $1 }),
-		"−": Operation.BinaryOperation({ $0 - $1 }),
 		"=": Operation.Equals,
-		"RAN": Operation.Random({ Double(arc4random()) / Double(UInt32.max) })
+		"RAD": Operation.Random({ Double(arc4random()) / Double(UInt32.max) })
 	]
 
-	// Public (External)
-	// -----------------
+	// MARK: - Public
 	// Read-only Property
 	var result: Double {
 		return accumulator
@@ -59,11 +50,9 @@ class CalculatorBrain {
 		accumulator = operand
 	}
 
-	func performOperation(symbol: String) {
-		if let operation = operations[symbol] {
+	func performOperation(symbole: String) {
+		if let operation = operations[symbole] {
 			switch operation {
-			case .Constant(let value):
-				accumulator = value
 			case .UnaryOperation(let function):
 				accumulator = function(accumulator)
 			case .BinaryOperation(let function):
@@ -75,6 +64,8 @@ class CalculatorBrain {
 				}
 			case .Random(let function):
 				accumulator = function()
+            case.Constant(let value):
+				accumulator = value
 			}
 		}
 	}
