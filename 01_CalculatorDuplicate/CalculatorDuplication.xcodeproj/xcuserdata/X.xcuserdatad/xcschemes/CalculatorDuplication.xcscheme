@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "17EC779B1CE78F1A00F438DC"
+               BuildableName = "CalculatorDuplicationTests.xctest"
+               BlueprintName = "CalculatorDuplicationTests"
+               ReferencedContainer = "container:CalculatorDuplication.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
