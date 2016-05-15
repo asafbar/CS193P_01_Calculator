@@ -8,28 +8,46 @@
 
 import XCTest
 
+@testable import CalculatorDuplication
+
 class CalculatorDuplicationTests: XCTestCase {
+    
+    var brain: CalculatorBrain?
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        brain = CalculatorBrain()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAddition() {
+        brain!.setOperand(10)
+        brain!.performOperation("+")
+        brain!.setOperand(10)
+        XCTAssert(brain!.result == 20.0)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func testSubtraction() {
+        brain!.setOperand(10)
+        brain!.performOperation("-")
+        brain!.setOperand(10)
+        XCTAssert(brain!.result == 0.0)
     }
     
+    func testDivision() {
+        brain!.setOperand(10)
+        brain!.performOperation("÷")
+        brain!.setOperand(2)
+        XCTAssert(brain!.result == 5.0)
+    }
+    
+    func testMutiplication() {
+        brain?.setOperand(10)
+        brain?.performOperation("×")
+        brain?.setOperand(10)
+        XCTAssert(brain!.result == 100.0)
+    }
 }
